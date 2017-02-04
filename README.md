@@ -8,17 +8,19 @@ The goal of the game is to defeat the zombie by correctly guessing their number 
 
 ## Installation
 
-Clone this repository with the following command
+Clone this repository with the following command:
 
 	git clone git@github.com:angrbrd/zombie-challenge.git
 
-Install the NPM dependencies
+Install the NPM dependencies:
 	
 	cd zombie-challenge
 	npm install
 
-Run the game
+## Running the Game
+
+Run the game with the following command:
 
 	node zombie_challenge.js
 
-** Try to stay alive! Good luck! **
+**Try to stay alive! Good luck!**
