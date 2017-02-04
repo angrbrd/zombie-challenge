@@ -31,7 +31,24 @@ var randomDamage;
 
 		// Record the zombie guess
 		randomNumber = getZombieGuess();
-		console.log('Zombie chose ' + randomNumber);
+		console.log('Zombie chose: ' + randomNumber + '\n');
+
+		// Determine who wins this round and update the player health
+		if (parseInt(answers.userGuess) === randomNumber) {
+			// User guessed correctly
+			randomDamage = getRandomDamage();
+			zombieHealth -= randomDamage;
+
+			console.log('GO YOU! You hit the zombie for ' + randomDamage + '.');
+			console.log('You have ' + userHealth + ' health left. The zombie has ' + zombieHealth + ' health left.');
+		} else {
+			// User guessed incorrectly
+			randomDamage = getRandomDamage();
+			userHealth -= randomDamage;
+
+			console.log('OUCH! The zombie slashed you for ' + randomDamage + '.');
+			console.log('You have ' + userHealth + ' health left. The zombie has ' + zombieHealth + ' health left.');
+		}
 	});
 //}
 
