@@ -15,9 +15,11 @@ var zombieHealth = 15;
 var randomNumber;
 var randomDamage;
 
-// Continue running the game until either the player's or the zombie's health 
-// decreases to zero
-//while( (userHealth > 0) && (zombieHealth > 0) ) {
+// Run the game by prompting user to input a guess
+promptUserInput();
+
+// promptUserInput runs the prompt sequence asing the user to input a guess
+function promptUserInput() {
 	inquirer.prompt([
 		{
 			type: "list",
@@ -41,6 +43,7 @@ var randomDamage;
 
 			console.log('GO YOU! You hit the zombie for ' + randomDamage + '.');
 			console.log('You have ' + userHealth + ' health left. The zombie has ' + zombieHealth + ' health left.');
+			console.log('\n***********************************************************\n');
 		} else {
 			// User guessed incorrectly
 			randomDamage = getRandomDamage();
@@ -48,18 +51,32 @@ var randomDamage;
 
 			console.log('OUCH! The zombie slashed you for ' + randomDamage + '.');
 			console.log('You have ' + userHealth + ' health left. The zombie has ' + zombieHealth + ' health left.');
+			console.log('\n***********************************************************\n');
 		}
-	});
-//}
 
-// The user lost
-// if ( userHealth <=0 ){
-// 	console.log('Dude... you lost. Zombies are eating your brain :-X.');
-// } else {
-// 	// The user won
-// 	console.log('SMASHING! ZOMBIE DEFEATED!!!');
-// }
-
+		// Check to see the result of the current guessing round
+		if ( (userHealth > 0) && (zombieHealth > 0) ) {
+			// If both players are still around, prompt once again
+			promptUserInput();
+		} else {
+			// If one of the players has died, end the game
+			if ( userHealth <=0 ) {
+				console.log('*************************************************************');
+				console.log('***                                                       ***');
+				console.log('***  Dude... you lost. Zombies are eating your brain :-X. ***');
+				console.log('***                                                       ***');
+				console.log('*************************************************************\n\n');
+			} else {
+				// The user won
+				console.log('*************************************************************');
+				console.log('***                                                       ***');
+				console.log('***              SMASHING! ZOMBIE DEFEATED!!!             ***');
+				console.log('***                                                       ***');
+				console.log('*************************************************************\n\n');
+			}
+		}
+	})
+}
 
 // getZombieGuess returns the random number that was guessed by the zombie
 function getZombieGuess() {
